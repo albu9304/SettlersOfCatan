@@ -1,4 +1,4 @@
-package settlers;
+package settlers.graphics;
 
 import java.awt.Image;
 

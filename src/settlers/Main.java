@@ -2,6 +2,8 @@ package settlers;
 
 import javax.swing.JFrame;
 
+import settlers.graphics.Gui;
+
 public class Main {
 
 	public static void main(String[] args) {
