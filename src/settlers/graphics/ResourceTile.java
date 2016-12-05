@@ -8,7 +8,9 @@ public class ResourceTile {
 	private Image image;
 	private int x;
 	private int y;
-
+	public static final int DEFAULT_HEIGHT = 128;
+	public static final int DEFAULT_WIDTH = 128;
+	
 	public ResourceTile(Image image, int x, int y) {
 		this.image = image;
 		this.x = x;
@@ -43,4 +45,5 @@ public class ResourceTile {
 		return image.getHeight(null);
 	}
 	
+
 }

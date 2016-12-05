@@ -3,36 +3,30 @@ package settlers.graphics;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import settlers.Path;
+import settlers.graphics.maps.Map;
 
 public class Gui extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private static final String IMAGE_DIR = "/images/"; // path for images directory
 	private Image imageBackground; // background image of Gui
-	private List<ResourceTile> resourceTiles = new ArrayList<ResourceTile>();
+	private List<ResourceTile> resourceTiles;
 	
 	public Gui() {
 		// background
-		URL urlBackground = getClass().getResource(IMAGE_DIR + "water.png");
+		URL urlBackground = getClass().getResource(Path.IMAGE_DIR + "water.png");
 		this.imageBackground = new ImageIcon(urlBackground).getImage();
 		
+		// Create map (board)
+		Map map = new Map(600, 200);
+		
 		// resource tiles
-		// hay
-		URL urlImageHay = getClass().getResource(IMAGE_DIR + "hay.png");
-		Image imageHay = new ImageIcon(urlImageHay).getImage();
-		ResourceTile resourceTileHay = new ResourceTile(imageHay, 3*128 + 64, 3*128-32);
-		this.resourceTiles.add(resourceTileHay);
-		// rock
-		URL urlImageRock = getClass().getResource(IMAGE_DIR + "rock.png");
-		Image imageRock = new ImageIcon(urlImageRock).getImage();
-		ResourceTile resourceTileRock = new ResourceTile(imageRock, 3*128, 2*128);
-		this.resourceTiles.add(resourceTileRock);
+		this.resourceTiles = map.getResourceTiles();
 	}
 	
 	@Override
