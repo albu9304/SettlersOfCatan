@@ -9,13 +9,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import settlers.Path;
-import settlers.graphics.maps.Map;
 
 public class Gui extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private Image imageBackground; // background image of Gui
 	private List<ResourceTile> resourceTiles;
+	private List<NumberTile> numberTiles;
 	
 	public Gui() {
 		// background
@@ -27,6 +27,9 @@ public class Gui extends JPanel {
 		
 		// resource tiles
 		this.resourceTiles = map.getResourceTiles();
+		
+		// number tiles
+		this.numberTiles = map.getNumberTiles();
 	}
 	
 	@Override
@@ -35,6 +38,10 @@ public class Gui extends JPanel {
 		for (ResourceTile resourceTile : this.resourceTiles) {
 			graphics.drawImage(resourceTile.getImage(), resourceTile.getX(), resourceTile.getY(), null);
 		}
+		for (NumberTile numberTile : this.numberTiles) {
+			graphics.drawImage(numberTile.getImage(), numberTile.getX(), numberTile.getY(), null);
+		}
+		
 	}
 	
 //	private void addResourceTile(Image image, int x, int y) {

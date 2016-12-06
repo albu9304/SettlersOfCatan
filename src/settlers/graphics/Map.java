@@ -1,4 +1,4 @@
-package settlers.graphics.maps;
+package settlers.graphics;
 
 import java.awt.Image;
 import java.net.URL;
@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
-import settlers.graphics.ResourceTile;
 import settlers.Path;
 //import settlers.graphics.NumberTile;
 //import settlers.graphics.PortTile;
@@ -26,7 +25,7 @@ public class Map {
 	private int x; // x-position of map (left top corner) 
 	private int y; // x-position of map (left top corner) 
 	private List<ResourceTile> resourceTiles;
-	
+	private List<NumberTile> numberTiles;
 	/*
 	 TILE_ORDER lists the order of the resource tiles from top left to bottom right 
 	 corner of the map
@@ -39,6 +38,13 @@ public class Map {
 			"clay", "hay", "sheep"
 	};
 	
+	private static final String[] NUMBER_TILE_ORDER = {
+			"10", "2", "9", 
+			"12", "6", "4", "10",
+			"9", "11", "0", "3", "8",
+			"8", "3", "4", "5", 
+			"5", "6", "11"	
+	};
 	/*
 	TILES_PER_ROW is used in conjunction with TILE_ORDER to for the layout of the map;
 	It is unnecessary to do it this way; tiles per row can be calculated from knowing the
@@ -57,7 +63,7 @@ public class Map {
 	private static final int[] TILES_PER_ROW = {3, 4, 5, 4, 3};
 	
 	//	private static final int[] TILES
-	//	private List<NumberTile> numberTiles;
+	
 	//	private List<PortTile> portTiles;
 	//	private List<List> mapList; 
 	
@@ -65,7 +71,9 @@ public class Map {
 		this.x = x;
 		this.y = y;
 		this.resourceTiles = new ArrayList<ResourceTile>();
+		this.numberTiles = new ArrayList<NumberTile>();
 		populateResourcesTiles();
+		populateNumberTiles();
 	}
 	
 	/*
@@ -100,7 +108,29 @@ public class Map {
 			}	
 		}
 	}
-	
+	private void populateNumberTiles() {
+		int iNumberTileOrder = 0;
+		for (ResourceTile resourceTile : this.resourceTiles) {
+			if (!NUMBER_TILE_ORDER[iNumberTileOrder].equals("0")){
+				int x = resourceTile.getX();
+				int y = resourceTile.getY();
+				x = x + (128-52)/2;
+				y = y + (128-52)/2;
+				addNumberTile(NUMBER_TILE_ORDER[iNumberTileOrder], x, y);
+					
+			}
+			iNumberTileOrder++;
+			
+		}
+		
+	}
+	private void addNumberTile(String filename, int x, int y) {
+		
+		URL urlImage = getClass().getResource(Path.IMAGE_DIR + filename + ".png");
+		Image image = new ImageIcon(urlImage).getImage();
+		NumberTile numberTile = new NumberTile(image, x, y);
+		this.numberTiles.add(numberTile);
+	}
 	/*
 	 Create resourceTile and add it to resourceTiles
 	 */
@@ -122,6 +152,10 @@ public class Map {
 	
 	public List<ResourceTile> getResourceTiles() {
 		return resourceTiles;
+	}
+	
+	public List<NumberTile> getNumberTiles() {
+		return numberTiles;
 	}
 	
 }

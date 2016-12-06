@@ -1,4 +1,4 @@
-package settlers.graphics.listeners;
+package settlers.graphics;
 
 public class DragAndDropListener {
 
