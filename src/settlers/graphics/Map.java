@@ -136,7 +136,7 @@ public class Map {
 	 */
 	private void addResourceTile(String filename, int x, int y) {
 		
-		URL urlImage = getClass().getResource(Path.IMAGE_DIR + filename + ".png");
+		URL urlImage = getClass().getResource(Path.IMAGE_DIR + filename + "_old.png");
 		Image image = new ImageIcon(urlImage).getImage();
 		ResourceTile resourceTile = new ResourceTile(image, x, y);
 		this.resourceTiles.add(resourceTile);
