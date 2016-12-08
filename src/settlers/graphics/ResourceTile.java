@@ -21,8 +21,8 @@ public class ResourceTile extends graphicalObject {
 		
 		// Inherited member variables
 		this.image = ImageIO.read(ResourceTile.class.getResource(Path.RESOURCE_TILES_IMAGES + resourceType + ".png"));
-		this.positionX = positionY;
-		this.positionY = positionX;
+		this.positionX = positionX;
+		this.positionY = positionY;
 		this.width = image.getWidth(null);
 		this.height = image.getHeight(null);
 		

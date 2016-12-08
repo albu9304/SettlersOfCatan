@@ -19,6 +19,6 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(gui);
 		frame.setResizable(false);
-		frame.setSize(gui.getMap().getWidth(), gui.getMap().getHeight());
+		frame.setSize(1920, 1080);
 	}
 }

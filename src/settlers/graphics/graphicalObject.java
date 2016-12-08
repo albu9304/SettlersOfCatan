@@ -12,11 +12,11 @@ public abstract class graphicalObject {
 	protected int height;
 
 	public Image getImage() {
-		return image;
+		return this.image;
 	}
 	
 	public int getPositionX() {
-		return positionX;
+		return this.positionX;
 	}
 
 	public void setPositionX(int positionX) {
@@ -24,7 +24,7 @@ public abstract class graphicalObject {
 	}
 
 	public int getPositionY() {
-		return positionY;
+		return this.positionY;
 	}
 
 	public void setPositionY(int positionY) {
@@ -32,11 +32,11 @@ public abstract class graphicalObject {
 	}
 
 	public int getWidth() {
-		return width;
+		return this.width;
 	}
 
 	public int getHeight() {
-		return height;
+		return this.height;
 	}
 	
 	public abstract void draw(Graphics graphics);

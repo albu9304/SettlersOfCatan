@@ -22,7 +22,7 @@ public class NumberTile extends graphicalObject{
 		this.image = ImageIO.read(ResourceTile.class.getResource(Path.NUMBER_TILES_IMAGES + tileNumber + ".png"));
 		this.width = image.getWidth(null);
 		this.height = image.getHeight(null);
-		this.positionX = positionY + (width - this.width)/2;
+		this.positionX = positionX + (width - this.width)/2;
 		this.positionY = positionY + (height - this.height)/2;
 		
 		// Member variables
