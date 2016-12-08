@@ -1,50 +1,40 @@
 package settlers.graphics;
 
-import java.awt.Image;
+import java.awt.Graphics;
+import java.io.IOException;
 
-public class NumberTile {
+import javax.imageio.ImageIO;
+
+import settlers.Path;
+
+public class NumberTile extends graphicalObject{
+
+	// Constants
+	public static final int DEFAULT_HEIGHT = 52;
+	public static final int DEFAULT_WIDTH = 52;
 	
+	// Member variables
+	private String tileNumber;
 	
-	private Image image;
-	private int x;
-	private int y;
-	public static final int DEFAULT_HEIGHT = 128;
-	public static final int DEFAULT_WIDTH = 128;
-	
-	public NumberTile(Image image, int x, int y) {
-		this.image = image;
-		this.x = x;
-		this.y = y;
+	public NumberTile(String tileNumber, int positionX, int positionY, int width, int height) throws IOException {
+			
+		// Inherited member variables
+		this.image = ImageIO.read(ResourceTile.class.getResource(Path.NUMBER_TILES_IMAGES + tileNumber + ".png"));
+		this.width = image.getWidth(null);
+		this.height = image.getHeight(null);
+		this.positionX = positionY + (width - this.width)/2;
+		this.positionY = positionY + (height - this.height)/2;
+		
+		// Member variables
+		this.tileNumber = tileNumber;
 	}
-
-	public Image getImage() {
-		return image;
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
-	public int getWidth() {
-		return image.getHeight(null);
-	}
-
-	public int getHeight() {
-		return image.getHeight(null);
+	@Override
+	public void draw(Graphics graphics) {
+		graphics.drawImage(this.image, this.positionX, this.positionY, null);
 	}
 	
-
+	public String getTileNumber() {
+		return tileNumber;
+	}
 }
 
