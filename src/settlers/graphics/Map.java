@@ -1,18 +1,16 @@
 package settlers.graphics;
 
-import java.awt.Image;
-import java.net.URL;
+import java.awt.Graphics;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.ImageIcon;
-
+import javax.imageio.ImageIO;
 import settlers.Path;
-//import settlers.graphics.NumberTile;
-//import settlers.graphics.PortTile;
 
 
 /**
+ Class description
  Creates a Map object which is used to create different maps from:
  - resource tiles
  - number tiles
@@ -20,13 +18,13 @@ import settlers.Path;
  OBS! Only map specific graphical objects are created here! 
  * */
 
+public class Map extends graphicalObject{
 
-public class Map {
-	private int x; // x-position of map (left top corner) 
-	private int y; // x-position of map (left top corner) 
+	// Member variables
 	private List<ResourceTile> resourceTiles;
-	private List<NumberTile> numberTiles;
+	
 	/*
+	 TILE_ORDER
 	 TILE_ORDER lists the order of the resource tiles from top left to bottom right 
 	 corner of the map
 	 */
@@ -41,12 +39,13 @@ public class Map {
 	private static final String[] NUMBER_TILE_ORDER = {
 			"10", "2", "9", 
 			"12", "6", "4", "10",
-			"9", "11", "0", "3", "8",
+			"9", "11", "", "3", "8",
 			"8", "3", "4", "5", 
 			"5", "6", "11"	
 	};
 	/*
-	TILES_PER_ROW is used in conjunction with TILE_ORDER to for the layout of the map;
+	TILES_PER_ROW
+	 is used in conjunction with TILE_ORDER to for the layout of the map;
 	It is unnecessary to do it this way; tiles per row can be calculated from knowing the
 	total number of tiles n according to: 
 	1. numberOfEdges = 1/2+sqrt( (4*(n-1)+3)/12)
@@ -62,24 +61,21 @@ public class Map {
 	 */
 	private static final int[] TILES_PER_ROW = {3, 4, 5, 4, 3};
 	
-	//	private static final int[] TILES
-	
-	//	private List<PortTile> portTiles;
-	//	private List<List> mapList; 
-	
-	public Map(int x, int y) {
-		this.x = x;
-		this.y = y;
+	public Map(String background, int positionX, int positionY) throws IOException {
+		this.image = ImageIO.read(Map.class.getResource(Path.IMAGES + background + ".png"));
+		this.positionX = positionX;
+		this.positionY = positionY;
+		this.width = image.getWidth(null);
+		this.height = image.getHeight(null);
 		this.resourceTiles = new ArrayList<ResourceTile>();
-		this.numberTiles = new ArrayList<NumberTile>();
 		populateResourcesTiles();
-		populateNumberTiles();
 	}
 	
 	/*
-	 Fill the list ResourcesTiles with resourceTile objects
+	 populateResourcesTiles
+	 fill the list ResourcesTiles with resourceTile objects
 	  */
-	private void populateResourcesTiles() { 
+	private void populateResourcesTiles() throws IOException { 
 		int iTileOrder = 0;
 		// find middle index of TILES_PER_ROW
 		int iMiddle = (int) (TILES_PER_ROW.length)/2;
@@ -103,59 +99,24 @@ public class Map {
 			
 			for (int iCol = 0; iCol < TILES_PER_ROW[iRow]; iCol++) {
 				int x = (int) (ResourceTile.DEFAULT_WIDTH * (xOffsetFactor + iCol));
-				addResourceTile(TILE_ORDER[iTileOrder], this.x + x,this.y + y);
+				resourceTiles.add(
+						new ResourceTile(TILE_ORDER[iTileOrder], this.positionX + x, this.positionY + y, NUMBER_TILE_ORDER[iTileOrder])
+						);
 				iTileOrder++;
 			}	
 		}
 	}
-	private void populateNumberTiles() {
-		int iNumberTileOrder = 0;
-		for (ResourceTile resourceTile : this.resourceTiles) {
-			if (!NUMBER_TILE_ORDER[iNumberTileOrder].equals("0")){
-				int x = resourceTile.getX();
-				int y = resourceTile.getY();
-				x = x + (128-52)/2;
-				y = y + (128-52)/2;
-				addNumberTile(NUMBER_TILE_ORDER[iNumberTileOrder], x, y);
-					
-			}
-			iNumberTileOrder++;
-			
-		}
-		
-	}
-	private void addNumberTile(String filename, int x, int y) {
-		
-		URL urlImage = getClass().getResource(Path.IMAGE_DIR + filename + ".png");
-		Image image = new ImageIcon(urlImage).getImage();
-		NumberTile numberTile = new NumberTile(image, x, y);
-		this.numberTiles.add(numberTile);
-	}
-	/*
-	 Create resourceTile and add it to resourceTiles
-	 */
-	private void addResourceTile(String filename, int x, int y) {
-		
-		URL urlImage = getClass().getResource(Path.IMAGE_DIR + filename + "_old.png");
-		Image image = new ImageIcon(urlImage).getImage();
-		ResourceTile resourceTile = new ResourceTile(image, x, y);
-		this.resourceTiles.add(resourceTile);
-	}
-	
-	public int getX() {
-		return this.x;
-	}
-	
-	public int getY() {
-		return this.y;
-	}
-	
+
 	public List<ResourceTile> getResourceTiles() {
 		return resourceTiles;
 	}
-	
-	public List<NumberTile> getNumberTiles() {
-		return numberTiles;
+
+	@Override
+	public void draw(Graphics graphics) {
+		graphics.drawImage(this.image, this.positionX, this.positionY, null);
+		for(ResourceTile resourceTile : this.resourceTiles) {
+			resourceTile.draw(graphics);
+		}
 	}
 	
 }

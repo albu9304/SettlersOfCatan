@@ -1,12 +1,14 @@
 package settlers;
 
+import java.io.IOException;
+
 import javax.swing.JFrame;
 
 import settlers.graphics.Gui;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		// create gui
 		Gui gui = new Gui();
@@ -17,6 +19,6 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(gui);
 		frame.setResizable(false);
-		frame.setSize(gui.getWidth(), gui.getHeight());
+		frame.setSize(1920, 1080);
 	}
 }
