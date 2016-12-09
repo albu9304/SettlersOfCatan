@@ -15,7 +15,6 @@ public class NumberTile extends graphicalObject{
 	
 	// Member variables
 	private String tileNumber;
-	
 	public NumberTile(String tileNumber, int positionX, int positionY, int width, int height) throws IOException {
 			
 		// Inherited member variables
@@ -35,6 +34,14 @@ public class NumberTile extends graphicalObject{
 	
 	public String getTileNumber() {
 		return tileNumber;
+	}
+	
+	public void setPositionX(int positionX, int width) {
+		this.positionX = positionX + (width - this.width)/2;
+	}
+	
+	public void setPositionY(int positionY, int height) {
+		this.positionY = positionY + (height - this.height)/2;
 	}
 }
 

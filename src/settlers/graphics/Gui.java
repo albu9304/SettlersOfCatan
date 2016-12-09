@@ -13,6 +13,12 @@ public class Gui extends JPanel {
 	public Gui() throws IOException {
 		// Create map (game board)
 		map = new Map("water", 0, 0);
+		
+		// add mouse listeners to enable drag and drop
+		//
+		DragAndDropListener listener = new DragAndDropListener(this.map.getResourceTiles(), this);
+		this.addMouseListener(listener);
+		this.addMouseMotionListener(listener);
 	}
 	
 	public Map getMap() {

@@ -50,7 +50,19 @@ public class ResourceTile extends graphicalObject {
 			numberTile.draw(graphics);
 		}
 	}
-
-
+	
+	public void setPositionX(int positionX) {
+		this.positionX = positionX;
+		if (this.numberTile instanceof NumberTile) {
+			this.numberTile.setPositionX(this.positionX, this.width);
+		}
+	}
+	
+	public void setPositionY(int positionY) {
+		this.positionY = positionY;
+		if (this.numberTile instanceof NumberTile) {
+			this.numberTile.setPositionY(this.positionY, this.height);
+		}
+	}
 	
 }
