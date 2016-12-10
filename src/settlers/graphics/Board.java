@@ -11,14 +11,14 @@ import settlers.Path;
 
 /**
  Class description
- Creates a Map object which is used to create different maps from:
+ Creates a Board object which is used to create different Boards from:
  - resource tiles
  - number tiles
  - shipping ports
- OBS! Only map specific graphical objects are created here! 
+ OBS! Only Board specific graphical objects are created here! 
  * */
 
-public class Map extends graphicalObject{
+public class Board extends graphicalObject{
 
 	// Member variables
 	private List<ResourceTile> resourceTiles;
@@ -26,7 +26,7 @@ public class Map extends graphicalObject{
 	/*
 	 TILE_ORDER
 	 TILE_ORDER lists the order of the resource tiles from top left to bottom right 
-	 corner of the map
+	 corner of the Board
 	 */
 	private static final String[] TILE_ORDER = {
 			"rock", "sheep", "wood",
@@ -45,7 +45,7 @@ public class Map extends graphicalObject{
 	};
 	/*
 	TILES_PER_ROW
-	 is used in conjunction with TILE_ORDER to for the layout of the map;
+	 is used in conjunction with TILE_ORDER to for the layout of the Board;
 	It is unnecessary to do it this way; tiles per row can be calculated from knowing the
 	total number of tiles n according to: 
 	1. numberOfEdges = 1/2+sqrt( (4*(n-1)+3)/12)
@@ -61,8 +61,8 @@ public class Map extends graphicalObject{
 	 */
 	private static final int[] TILES_PER_ROW = {3, 4, 5, 4, 3};
 	
-	public Map(String background, int positionX, int positionY) throws IOException {
-		this.image = ImageIO.read(Map.class.getResource(Path.IMAGES + background + ".png"));
+	public Board(String background, int positionX, int positionY) throws IOException {
+		this.image = ImageIO.read(Board.class.getResource(Path.IMAGES + background + ".png"));
 		this.positionX = positionX;
 		this.positionY = positionY;
 		this.width = image.getWidth(null);
