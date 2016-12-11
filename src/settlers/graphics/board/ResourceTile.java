@@ -1,4 +1,4 @@
-package settlers.graphics;
+package settlers.graphics.board;
 
 import java.awt.Graphics;
 import java.io.IOException;
@@ -6,8 +6,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import settlers.Path;
+import settlers.graphics.GraphicalObject;
 
-public class ResourceTile extends graphicalObject {
+public class ResourceTile extends GraphicalObject {
 	
 	// Constants
 	public static final int DEFAULT_WIDTH = 128;

@@ -1,8 +1,11 @@
-package settlers.graphics;
+package settlers;
 
 import java.awt.Graphics;
 import java.io.IOException;
 import javax.swing.JPanel;
+
+import settlers.graphics.DragAndDropListener;
+import settlers.graphics.board.Board;
 
 public class Game extends JPanel {
 
@@ -28,5 +31,9 @@ public class Game extends JPanel {
 	@Override
 	protected void paintComponent(Graphics graphics) {
 		board.draw(graphics);
+	}
+	
+	public void start() {
+		
 	}
 }

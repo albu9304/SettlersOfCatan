@@ -1,4 +1,4 @@
-package settlers.graphics;
+package settlers.graphics.board;
 
 import java.awt.Graphics;
 import java.io.IOException;
@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import settlers.Path;
+import settlers.graphics.GraphicalObject;
 
 
 /**
@@ -18,7 +19,7 @@ import settlers.Path;
  OBS! Only Board specific graphical objects are created here! 
  * */
 
-public class Board extends graphicalObject{
+public class Board extends GraphicalObject{
 
 	// Member variables
 	private List<ResourceTile> resourceTiles;

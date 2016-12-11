@@ -5,6 +5,9 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.List;
 
+import settlers.Game;
+import settlers.graphics.board.ResourceTile;
+
 public class DragAndDropListener implements MouseListener, MouseMotionListener {
 
 	private List<ResourceTile> resourceTiles;
