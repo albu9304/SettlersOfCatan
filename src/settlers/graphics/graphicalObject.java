@@ -3,7 +3,7 @@ package settlers.graphics;
 import java.awt.Graphics;
 import java.awt.Image;
 
-public abstract class graphicalObject {
+public abstract class GraphicalObject {
 	
 	protected Image image;
 	protected int positionX;
