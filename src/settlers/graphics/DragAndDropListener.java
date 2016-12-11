@@ -5,18 +5,21 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.List;
 
+import settlers.Game;
+import settlers.graphics.board.ResourceTile;
+
 public class DragAndDropListener implements MouseListener, MouseMotionListener {
 
 	private List<ResourceTile> resourceTiles;
-	private Gui gui;
+	private Game game;
 	
 	private ResourceTile dragResourceTile;
 	private int dragOffsetX;
 	private int dragOffsetY;
 	
-	public DragAndDropListener(List<ResourceTile> resourceTiles, Gui gui) {
+	public DragAndDropListener(List<ResourceTile> resourceTiles, Game game) {
 		this.resourceTiles = resourceTiles;
-		this.gui = gui;
+		this.game = game;
 	}
 	
 	private boolean mouseOverObject(ResourceTile resourceTile, int x, int y) {
@@ -32,7 +35,7 @@ public class DragAndDropListener implements MouseListener, MouseMotionListener {
 		if (this.dragResourceTile != null) {
 			this.dragResourceTile.setPositionX(event.getPoint().x - this.dragOffsetX);
 			this.dragResourceTile.setPositionY(event.getPoint().y - this.dragOffsetY);
-			this.gui.repaint();
+			this.game.repaint();
 		}
 	}
 
