@@ -1,5 +1,6 @@
 package settlers;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,7 @@ public class Player {
 	
 	private Image image;
 
-	// Constructor
+	// Constructors
 	public Player(int id) {
 		this.id = id;
 	}
@@ -55,7 +56,23 @@ public class Player {
 		this.name = name;
 	}
 	
+	public void addCity(int positionX, int positionY) {
+		this.cities.add(new City(this.color, positionX, positionY));
+	}
 	
+	public int getId() {
+		return this.id;
+	}
+	
+//	public void removeCity() {
+//		
+//	}
+	
+	public void drawPieces(Graphics graphics) {
+		for (City city : cities){
+			city.draw(graphics);
+		}
+	}
 	
 	
 	
