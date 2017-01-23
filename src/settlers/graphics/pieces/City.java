@@ -7,7 +7,6 @@ import javax.imageio.ImageIO;
 
 import settlers.Path;
 import settlers.graphics.GraphicalObject;
-import settlers.graphics.board.ResourceTile;
 
 public class City extends GraphicalObject{
 
@@ -15,7 +14,7 @@ public class City extends GraphicalObject{
 		
 		// Inherited member variables
 		try {
-			this.image = ImageIO.read(ResourceTile.class.getResource(Path.PIECES_IMAGES + "city" + color + ".png"));
+			this.image = ImageIO.read(City.class.getResource(Path.PIECES_IMAGES + "city" + color + ".png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
