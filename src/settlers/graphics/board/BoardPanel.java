@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.JPanel;
+
 import settlers.Path;
-import settlers.graphics.GraphicalObject;
 
 
 /**
@@ -19,7 +20,12 @@ import settlers.graphics.GraphicalObject;
  OBS! Only Board specific graphical objects are created here! 
  * */
 
-public class Board extends GraphicalObject{
+public class BoardPanel extends JPanel{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	// Member variables
 	private List<ResourceTile> resourceTiles;
@@ -62,8 +68,8 @@ public class Board extends GraphicalObject{
 	 */
 	private static final int[] TILES_PER_ROW = {3, 4, 5, 4, 3};
 	
-	public Board(String background, int positionX, int positionY) throws IOException {
-		this.image = ImageIO.read(Board.class.getResource(Path.IMAGES + background + ".png"));
+	public BoardPanel(String background, int positionX, int positionY) throws IOException {
+		this.image = ImageIO.read(BoardPanel.class.getResource(Path.IMAGES + background + ".png"));
 		this.positionX = positionX;
 		this.positionY = positionY;
 		this.width = image.getWidth(null);
