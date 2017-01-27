@@ -9,28 +9,27 @@ import java.util.List;
 import java.util.Random;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import settlers.graphics.DragAndDropListener;
-import settlers.graphics.board.BoardPanel;
+import settlers.graphics.board.Board;
 
-public class GameFrame extends JFrame {
+public class Game extends JPanel {
 
 	// Member variables
 	private static final long serialVersionUID = 1L;
-	private BoardPanel boardPanel;
+	private Board board;
 	private PlayerPanel playerPanel;
 	private List<Player> players = new ArrayList<Player>();
 	private int currentPlayerId;
 	private int numberOfPlayers;
 	
-	public GameFrame(int numberOfPlayers) throws IOException {
+	public Game(int numberOfPlayers) throws IOException {
 		
 		this.numberOfPlayers = numberOfPlayers; 
 		
-		// Create board panel
-		boardPanel = new BoardPanel("water", 0, 0);
+		// Create map (game board)
+		board = new Board("water", 0, 0);
 		JButton button_endTurn = new JButton("End turn");
 		button_endTurn.addActionListener(new ActionListener() { 
 		    public void actionPerformed(ActionEvent e) { 
@@ -43,17 +42,9 @@ public class GameFrame extends JFrame {
 	
 		// add mouse listeners to enable drag and drop
 		//
-		DragAndDropListener listener = new DragAndDropListener(this.boardPanel.getResourceTiles(), this);
+		DragAndDropListener listener = new DragAndDropListener(this.board.getResourceTiles(), this);
 		this.addMouseListener(listener);
 		this.addMouseMotionListener(listener);
-		
-		this.setVisible(true);
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.add(boardPanel);
-		this.add(playerPanel);
-		this.setResizable(false);
-		this.setSize(1920, 1080);
-		
 	}
 	
 	private void addPlayers() {
@@ -62,8 +53,8 @@ public class GameFrame extends JFrame {
 		}
 	}
 	
-	public BoardPanel getBoard() {
-		return this.boardPanel;
+	public Board getBoard() {
+		return this.board;
 	}
 	
 	private void endTurn() {
@@ -77,7 +68,7 @@ public class GameFrame extends JFrame {
 	
 	@Override
 	protected void paintComponent(Graphics graphics) {
-		this.boardPanel.draw(graphics);
+		this.board.draw(graphics);
 		try {
 			this.playerPanel.draw(graphics);
 		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
